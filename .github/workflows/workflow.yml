@@ -1,0 +1,34 @@
+on: push
+
+jobs:
+  check-linter:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: yarn
+    - run: yarn lint
+
+  check-style:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: yarn
+    - run: yarn style
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: yarn
+    - run: yarn test
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: yarn
+    - run: yarn build

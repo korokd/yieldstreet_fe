@@ -76,7 +76,11 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "lint": "eslint",
+    "lint:fix": "yarn lint --fix",
+    "style": "prettier **/*.{tsx,ts,css}",
+    "style:fix": "yarn style --write"
   },
   "eslintConfig": {
     "extends": [
@@ -115,7 +119,7 @@
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jsdom",
-    "testRunner": "/Users/dkorok/Personal/yieldstreet_fe/node_modules/jest-circus/runner.js",
+    "testRunner": "./node_modules/jest-circus/runner.js",
     "transform": {
       "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
@@ -152,5 +156,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
   }
 }
