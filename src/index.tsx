@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-window.addEventListener('DOMContentLoaded', () => {
-  const root = document.createElement('div')
-  root.id = 'root'
+window.addEventListener("DOMContentLoaded", () => {
+  const root = document.createElement("div");
+  root.id = "root";
 
-  document.body.appendChild(root)
+  document.body.appendChild(root);
 
   ReactDOM.render(
     <React.StrictMode>
@@ -21,4 +21,4 @@ window.addEventListener('DOMContentLoaded', () => {
   // to log results (for example: reportWebVitals(console.log))
   // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
   reportWebVitals();
-})
+});
