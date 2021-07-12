@@ -1,11 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
-
-interface InputConfig {
-  type: string;
-  options?: string[];
-  default?: string;
-}
+import Input, { InputConfig } from "./Input";
 
 interface Field {
   name: string;
@@ -13,15 +8,12 @@ interface Field {
   required: boolean;
 }
 
-interface FieldResult {
-  [name: string]: string;
-}
-
 interface StepProps {
   name: string;
   fields: Field[];
   isFirstStep: boolean;
-  onNext(result: FieldResult[]): void;
+  onChange(name: string, value: string): void;
+  onNext(): void;
   onPrevious(): void;
 }
 
@@ -40,26 +32,30 @@ const Footer = styled.footer`
   height: 30px;
 `;
 
-function Step({ name, fields, isFirstStep, onNext }: StepProps) {
+function Step({
+  name,
+  fields,
+  isFirstStep,
+  onChange,
+  onNext,
+  onPrevious,
+}: StepProps) {
   const formId = `form-${name}`;
   const formRef = useRef<HTMLFormElement>(
     null
   ) as React.MutableRefObject<HTMLFormElement>;
 
-  const [results, setResults] = useState<FieldResult[]>(
-    fields.map(({ name }) => ({ [name]: "" }))
-  );
-
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submit");
-    onNext(results);
+    onNext();
   };
 
-  const onChange =
+  const onChangeInput =
     (name: string) =>
-    ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-      setResults({ ...results, [name]: value });
+    ({
+      target: { value },
+    }: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      onChange(name, value);
     };
 
   return (
@@ -69,18 +65,21 @@ function Step({ name, fields, isFirstStep, onNext }: StepProps) {
       </Header>
       <Form id={formId} ref={formRef} onSubmit={onSubmitForm}>
         {fields.map(({ name, config, required }) => (
-          <label key={name}>
-            <span>{name}</span>
-            <input
-              type={config.type}
-              required={required}
-              onChange={onChange(name)}
-            />
-          </label>
+          <Input
+            key={name}
+            name={name}
+            config={config}
+            required={required}
+            onChange={onChangeInput}
+          />
         ))}
       </Form>
       <Footer>
-        {isFirstStep ? <div></div> : <button>Previous</button>}
+        {isFirstStep ? (
+          <div></div>
+        ) : (
+          <button onClick={onPrevious}>Previous</button>
+        )}
         <button type="submit" form={formId}>
           Next
         </button>
