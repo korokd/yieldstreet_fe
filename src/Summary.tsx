@@ -24,6 +24,7 @@ const Footer = styled.footer`
 
 const Table = styled.table`
   border-collapse: collapse;
+  width: 100%;
 `;
 
 const Td = styled.td`
