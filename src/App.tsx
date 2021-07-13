@@ -21,6 +21,8 @@ const Container = styled.div`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   left: 50%;
+  max-width: 500px;
+  padding: 0 20px 20px;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);

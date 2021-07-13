@@ -25,6 +25,14 @@ const Label = styled.label`
   flex-direction: column;
 `;
 
+const TitleSpan = styled.span`
+  margin: 1em 0 0.3em;
+
+  &:first-child {
+    margin-top: 0.3em;
+  }
+`
+
 function Select({ options }: SelectProps) {
   return (
     <select>
@@ -119,20 +127,16 @@ function Input({ name, config, required, onChange }: InputProps) {
   const type = config.type.toLowerCase();
   const options = config.options || [];
 
-  if (type === "radio") {
-    return (
+  return (
+    <Label>
+      <TitleSpan>{name}</TitleSpan>
+      {type === "radio" ?
       <Radio
         options={options}
         default={config.default || ""}
         onChange={onChange(name)}
       />
-    );
-  }
-
-  return (
-    <Label>
-      <span>{name}</span>
-      {type === "select" ? (
+      :type === "select" ? (
         <Select
           options={options}
           onChange={onChange(name)}
