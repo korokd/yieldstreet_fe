@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Step from "./Step";
+import Summary from "./Summary";
 
 interface OverlayProps {
   visible: boolean;
@@ -134,6 +135,10 @@ function App() {
     });
   const onNext = () => setActiveStepIndex(activeStepIndex + 1);
   const onPrevious = () => setActiveStepIndex(activeStepIndex - 1);
+  const onSubmit = () => {
+    setActiveStepIndex(0);
+    setVisible(false);
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -153,7 +158,13 @@ function App() {
             onNext={onNext}
             onPrevious={onPrevious}
           />
-        ) : null}
+        ) : (
+          <Summary
+            summary={summary}
+            onSubmit={onSubmit}
+            onPrevious={onPrevious}
+          />
+        )}
       </Container>
     </Overlay>
   );
