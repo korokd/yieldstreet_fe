@@ -31,7 +31,7 @@ const TitleSpan = styled.span`
   &:first-child {
     margin-top: 0.3em;
   }
-`
+`;
 
 function Select({ options }: SelectProps) {
   return (
@@ -130,13 +130,13 @@ function Input({ name, config, required, onChange }: InputProps) {
   return (
     <Label>
       <TitleSpan>{name}</TitleSpan>
-      {type === "radio" ?
-      <Radio
-        options={options}
-        default={config.default || ""}
-        onChange={onChange(name)}
-      />
-      :type === "select" ? (
+      {type === "radio" ? (
+        <Radio
+          options={options}
+          default={config.default || ""}
+          onChange={onChange(name)}
+        />
+      ) : type === "select" ? (
         <Select
           options={options}
           onChange={onChange(name)}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useLocalStorage } from "./useLocalStorage";
 import Step from "./Step";
 import Summary from "./Summary";
 
@@ -53,9 +54,7 @@ const steps = [
         config: {
           type: "select",
           options: ["13-18", "19-24", "24-35", "35-59", "60+"],
-          get default() {
-            return this.options[0];
-          },
+          default: "13-18",
         },
         required: true,
       },
@@ -125,6 +124,7 @@ function makeSummary(steps: any[]) {
 function App() {
   const delay = 2000;
   const [isVisible, setVisible] = useState(false);
+  const [hasSubmitted, setSubmitted] = useLocalStorage("submitted", false);
 
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const activeStep = steps[activeStepIndex];
@@ -140,11 +140,14 @@ function App() {
   const onSubmit = () => {
     setActiveStepIndex(0);
     setVisible(false);
+    setSubmitted(true)
   };
 
   useEffect(() => {
     setTimeout(() => {
-      setVisible(true);
+      if (!hasSubmitted) {
+        setVisible(true);
+      }
     }, delay);
   }, []);
 

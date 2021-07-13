@@ -33,7 +33,7 @@ const Td = styled.td`
   @media (min-width: 768px) {
     padding: 5px 10px;
   }
-`
+`;
 
 function summaryToArray(summary: Summary) {
   return Object.entries(summary).map(([step, fields]) => ({
@@ -67,7 +67,7 @@ function SummaryC({ summary, onSubmit, onPrevious }: SummaryProps) {
               <tr key={step + index}>
                 {index === 0 ? <Td rowSpan={fields.length}>{step}</Td> : null}
                 <Td>{question}</Td>
-                <Td>{Array.isArray(answer) ? answer.join(', ') : answer}</Td>
+                <Td>{Array.isArray(answer) ? answer.join(", ") : answer}</Td>
               </tr>
             ))
           )}
