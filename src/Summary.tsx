@@ -83,11 +83,12 @@ function SummaryC({
           )}
         </tbody>
       </Table>
-      {hasSubmitted ? 
+      {hasSubmitted ? (
         <Footer>
           <div></div>
           <button onClick={onClose}>Close</button>
-        </Footer> : (
+        </Footer>
+      ) : (
         <Footer>
           <button onClick={onPrevious}>Previous</button>
           <button onClick={onSubmit}>Submit</button>

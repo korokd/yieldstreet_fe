@@ -30,7 +30,7 @@ const Container = styled.div`
   width: 90%;
 `;
 
-const steps = [
+export const steps = [
   {
     name: "Identity",
     fields: [
