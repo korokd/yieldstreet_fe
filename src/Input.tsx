@@ -101,6 +101,7 @@ function Checkbox({ options, onChange }: CheckboxProps) {
       onChange({
         target: { value: Array.from(selected) },
       } as unknown as React.ChangeEvent<HTMLInputElement>);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {

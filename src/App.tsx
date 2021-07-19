@@ -146,6 +146,7 @@ function App() {
         setVisible(true);
       }
     }, delay);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
