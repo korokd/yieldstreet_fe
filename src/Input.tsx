@@ -46,15 +46,17 @@ function Select({ options }: SelectProps) {
 }
 
 interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: string;
   options: string[];
   default: string;
+  required: boolean;
 }
 
 const RowLabel = styled(Label)`
   flex-direction: row;
 `;
 
-function Radio({ options, default: def, onChange }: RadioProps) {
+function Radio({ name, options, required, default: def, onChange }: RadioProps) {
   const [selected, setSelected] = useState(def);
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +70,9 @@ function Radio({ options, default: def, onChange }: RadioProps) {
         <RowLabel key={option}>
           <input
             type="radio"
+            name={name}
             value={option}
+            required={required}
             checked={selected === option}
             onChange={onChangeInput}
           />
@@ -132,7 +136,9 @@ function Input({ name, config, required, onChange }: InputProps) {
       <TitleSpan>{name}</TitleSpan>
       {type === "radio" ? (
         <Radio
+          name={name}
           options={options}
+          required={required}
           default={config.default || ""}
           onChange={onChange(name)}
         />
