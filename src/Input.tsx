@@ -56,7 +56,13 @@ const RowLabel = styled(Label)`
   flex-direction: row;
 `;
 
-function Radio({ name, options, required, default: def, onChange }: RadioProps) {
+function Radio({
+  name,
+  options,
+  required,
+  default: def,
+  onChange,
+}: RadioProps) {
   const [selected, setSelected] = useState(def);
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {

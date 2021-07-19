@@ -7,12 +7,14 @@ export interface Summary {
 
 interface SummaryProps {
   summary: Summary;
+  hasSubmitted: boolean;
   onSubmit(): void;
   onPrevious(): void;
+  onClose(): void;
 }
 
 const Header = styled.header`
-  height: 30px;
+  min-height: 30px;
 `;
 
 const Footer = styled.footer`
@@ -46,13 +48,20 @@ function summaryToArray(summary: Summary) {
   }));
 }
 
-function SummaryC({ summary, onSubmit, onPrevious }: SummaryProps) {
+function SummaryC({
+  summary,
+  hasSubmitted,
+  onSubmit,
+  onPrevious,
+  onClose,
+}: SummaryProps) {
   const summaryAsArray = summaryToArray(summary);
 
   return (
     <>
       <Header>
         <h3>Summary</h3>
+        {hasSubmitted ? <h4>Your responses have been submitted:</h4> : null}
       </Header>
       <Table>
         <thead>
@@ -74,10 +83,16 @@ function SummaryC({ summary, onSubmit, onPrevious }: SummaryProps) {
           )}
         </tbody>
       </Table>
-      <Footer>
-        <button onClick={onPrevious}>Previous</button>
-        <button onClick={onSubmit}>Submit</button>
-      </Footer>
+      {hasSubmitted ? 
+        <Footer>
+          <div></div>
+          <button onClick={onClose}>Close</button>
+        </Footer> : (
+        <Footer>
+          <button onClick={onPrevious}>Previous</button>
+          <button onClick={onSubmit}>Submit</button>
+        </Footer>
+      )}
     </>
   );
 }

@@ -137,11 +137,8 @@ function App() {
     });
   const onNext = () => setActiveStepIndex(activeStepIndex + 1);
   const onPrevious = () => setActiveStepIndex(activeStepIndex - 1);
-  const onSubmit = () => {
-    setActiveStepIndex(0);
-    setVisible(false);
-    setSubmitted(true)
-  };
+  const onSubmit = () => setSubmitted(true);
+  const onClose = () => setVisible(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -166,8 +163,10 @@ function App() {
         ) : (
           <Summary
             summary={summary}
+            hasSubmitted={hasSubmitted}
             onSubmit={onSubmit}
             onPrevious={onPrevious}
+            onClose={onClose}
           />
         )}
       </Container>
